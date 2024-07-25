@@ -23,6 +23,9 @@ start_service() {
   # Persist files for TLS cert & Taildrop files
   procd_append_param command --statedir /etc/tailscale/
 
+  # Change env variable to force use of nftables
+  procd_set_param env TS_DEBUG_FIREWALL_MODE=nftables
+
   procd_set_param respawn
   procd_set_param stdout 1
   procd_set_param stderr 1
